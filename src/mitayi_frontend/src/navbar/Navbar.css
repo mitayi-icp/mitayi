@@ -1,0 +1,21 @@
+.navbar {
+    
+  background: linear-gradient(to top, #accbee 0%, #e7f0fd 100%);
+    color: #100606;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  }
+  
+  .navbar__links a {
+    color: #000000;
+    margin-left: 20px;
+    text-decoration: none;
+  }
+  
+  .navbar__links a:hover {
+    color: #141010;
+  }
+  

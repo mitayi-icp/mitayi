@@ -1,0 +1,68 @@
+.card {
+    background: linear-gradient(to bottom, white, rgb(143, 188, 255), rgb(57, 24, 146) );
+    border: 1px solid #ddd;
+    border-radius: 25px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    padding-top: 15px;
+    max-width: 300px;
+    text-align: center;
+    transition: transform 0.2s;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    row-gap: 10px;
+    border: solid 1px rgb(32, 0, 147);
+  }
+  
+  .card:hover {
+    transform: translateY(-10px);
+  }
+
+  .card a{
+    text-decoration: none;
+  }
+
+  .card img{
+    width: 150px;
+    height: 150px;
+    margin-bottom: 60px;
+    filter: drop-shadow(0px 0px 23px rgba(169, 163, 255, 0.712));
+  }
+  
+  .card__title {
+    margin-bottom: 5px;
+    font-size: 16px;
+    font-weight: 600;
+    background: -webkit-linear-gradient(135deg, rgb(255, 118, 6), rgb(255, 255, 255), rgb(255, 255, 255));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-fill-color: transparent;
+  }
+
+
+@keyframes shine {
+  0% {
+    background-position: -200%;
+  }
+  100% {
+    background-position: 200%;
+  }
+}
+
+.shine {
+  display: inline-block;
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.195), rgba(255, 255, 255, 0.682), rgba(255, 255, 255, 0.298));
+  background-size: 200%;
+  animation: shine 2s linear infinite;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+  
+  .card__content {
+    font-size: 1em;
+    color: #ffffff;
+  }
+  

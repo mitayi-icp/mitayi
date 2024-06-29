@@ -1,0 +1,72 @@
+.bground{
+    padding: 10px;
+    text-align: center;
+    font-family: sans-serif;
+}
+
+.text-title {
+    font-weight: 700;
+  }
+  
+  .content {
+    display: inline-flex;
+    font-family: sans-serif;
+    justify-content: space-evenly;
+    text-align: center;
+    width: 100%;
+  }
+  
+  .column-container {
+    display: flex;
+    justify-content: end;
+    flex-direction: column;
+    border: 1px solid lightblue;
+    border-radius: 25px;
+    height: 76vh;
+    position: relative;
+    width: 30%;
+  }
+  
+  .center-bar {
+    background-color: rgb(49, 49, 49);
+    width: 4%;
+    height: 90%;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    position: absolute;
+    left: 48%;
+    z-index: -1;
+  }
+  
+  .tile {
+    border-radius: 25px;
+    height: 40px;
+    margin: auto;
+    z-index: 10;
+  }
+  
+  .win-message {
+    background-color: #080;
+    border-radius: 10px;
+    color: #ff0;
+    font-size: 42px;
+    font-weight: 700;
+    left: 50%;
+    position: absolute;
+    text-align: center;
+    text-shadow: 1px 1px #000;
+    top: 40%;
+    transform: translate(-50%, -50%);
+    width: 40%;
+    z-index: 20;
+  }
+  
+  .win-subtitle {
+    font-size: 24px;
+    font-weight: 500;
+    margin: 10px 0;
+  }
+  
+  .win-number {
+    color: #2ff;
+  }

@@ -1,0 +1,85 @@
+.gradient-bg {
+    background: linear-gradient(135deg, rgb(1, 2, 14) 0%, rgb(0, 13, 152) 100%);
+}
+.blur {
+    backdrop-filter: blur(10px);
+}
+.blob {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(50px);
+}
+.blob-cyan {
+    background: rgba(161, 107, 0, 0.36);
+}
+.blob-white {
+    background: rgb(35, 0, 80);
+}
+.gradient-text {
+    font-size: 24px;
+    font-weight: bold;
+    background: -webkit-linear-gradient(135deg, rgb(255, 145, 0), rgb(1, 88, 145), rgb(192, 0, 32));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-fill-color: transparent;
+}
+.gradient-head {
+    font-size: 24px;
+    font-weight: bold;
+    background: -webkit-linear-gradient(135deg, rgb(255, 145, 0), rgb(0, 0, 0), rgb(0, 0, 0));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-fill-color: transparent;
+}
+.gradient-nav {
+    font-size: 24px;
+    font-weight: bold;
+    background: -webkit-linear-gradient(135deg, rgb(255, 190, 105), rgb(255, 73, 243), rgb(255, 255, 255));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-fill-color: transparent;
+}
+.gradient-gyn {
+    font-size: 24px;
+    font-weight: bold;
+    background: -webkit-linear-gradient(135deg, rgb(255, 145, 0), rgb(255, 255, 255), rgb(255, 255, 255));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-fill-color: transparent;
+}
+.gradient-para {
+    font-size: 18px;
+    font-weight: 500;
+    background: -webkit-linear-gradient(135deg, rgb(80, 220, 255), rgb(255, 255, 255), rgb(255, 255, 255));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-fill-color: transparent;
+}
+.hy {
+    font-size: 3rem;
+    color: white;
+    animation: breathing 3s ease-in-out infinite;
+}
+.dp {
+    filter: drop-shadow(0px 30px 40px rgb(100, 100, 255));
+}
+
+@keyframes breathing {
+    0% {
+        
+        text-shadow: 0 0 1px rgb(10, 0, 120), 0 0 2px rgb(10, 0, 120), 0 0 3px rgb(10, 0, 120);
+    }
+    50% {
+        
+        text-shadow: 0 0 10px rgba(255, 166, 0, 0.363), 0 0 10px rgba(255, 166, 0, 0.534), 0 0 10px rgba(255, 166, 0, 0.675);
+    }
+    100% {
+        
+        text-shadow: 0 0 1px rgb(10, 0, 120), 0 0 2px rgb(10, 0, 120), 0 0 3px rgb(10, 0, 120);
+    }
+}

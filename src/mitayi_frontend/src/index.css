@@ -1,0 +1,90 @@
+.cracker-animation {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 200px;
+  height: 200px;
+  background-image: url('./TicTac//Assets/win.png');
+  background-size: cover;
+  animation: pop-crackers 1s forwards;
+}
+
+@keyframes pop-crackers {
+  0% {
+    transform: translate(-50%, -50%) scale(0);
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.2);
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+@keyframes scrollBorder {
+  0% {
+    border-image: linear-gradient(to right, green, red);
+    border-image-slice: 1;
+  }
+  25% {
+    border-image: linear-gradient(to bottom, green, red);
+    border-image-slice: 1;
+  }
+  50% {
+    border-image: linear-gradient(to left, green, red);
+    border-image-slice: 1;
+  }
+  75% {
+    border-image: linear-gradient(to top, green, red);
+    border-image-slice: 1;
+  }
+  100% {
+    border-image: linear-gradient(to right, green, red);
+    border-image-slice: 1;
+  }
+}
+
+@layer utilities {
+  .glass-effect {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 15px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    transition: all 0.3s ease;
+  }
+
+  .glass-effect:hover {
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+    transform: scale(1.05);
+  }
+}
+
+
+
+body{
+  background:"linear-gradient(90deg, rgba(12,229,230,0.9109768907563025) 0%, rgba(15,128,195,0.7148984593837535) 34%, rgba(0,212,255,1) 100%);"
+}
+
+
+.perspective-1000 {
+  perspective: 1000px;
+}
+
+.transform-style-preserve-3d {
+  transform-style: preserve-3d;
+}
+
+.transition-transform {
+  transition: transform 0.6s;
+}
+
+.transform-rotateY-180 {
+  transform: rotateY(180deg);
+}
+
+.backface-hidden {
+  backface-visibility: hidden;
+}

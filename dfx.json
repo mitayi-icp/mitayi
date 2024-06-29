@@ -1,0 +1,37 @@
+{
+  "canisters": {
+    "mitayi_backend": {
+      "main": "src/mitayi_backend/main.mo",
+      "type": "motoko"
+    },
+    "mitayi_frontend": {
+      "dependencies": [
+        "mitayi_backend"
+      ],
+      "source": [
+        "src/mitayi_frontend/build"
+      ],
+      "type": "assets"
+    }
+  },
+  "networks": {
+    "local": {
+      "bind": "127.0.0.1:8000",
+      "type": "ephemeral"
+    },
+    "ic": {
+      "providers": [
+        "https://mainnet.dfinity.network"
+      ],
+      "type": "persistent"
+    }
+  },
+  "defaults": {
+    "build": {
+      "args": "",
+      "packtool": ""
+    }
+  },
+  "output_env_file": ".env",
+  "version": 1
+}
