@@ -12,6 +12,11 @@ import feature3Image from './Assets/wallet.png';
 import feature4Image from './Assets/spon.png';
 import icp from './Assets/icp.png'
 import Login from '../Login';
+import AddTokensButton from '../Backendcomponents/AddTokensButton';
+import RemoveTokensButton from '../Backendcomponents/RemoveTokensButton';
+import ExchangeTokensButton from '../Backendcomponents/ExchangeTokensButton';
+import FetchTokensAndRoomCards from '../Backendcomponents/FetchTokensAndRoomCards';
+import profile from './Assets/profile.png'
 // Keyframes for animations
 const fadeIn = keyframes`
   from {
@@ -34,16 +39,24 @@ const slideIn = keyframes`
 `;
 
 // Styled-components for animation
+// const AnimatedSection = styled.section`
+//   animation: ${fadeIn} 2s ease-in-out;
+// `;
 const AnimatedSection = styled.section`
-  animation: ${fadeIn} 2s ease-in-out;
+  animation: ${fadeIn} 0.5s ease-in-out;
 `;
-
 const AnimatedDiv = styled.div`
   animation: ${slideIn} 1s ease-in-out;
 `;
 
 const LandPage = () => {
+
+  const [showWallet, setShowWallet] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  const HandleWallet = () => {
+    setShowWallet(!showWallet);
+  }
 
   const handleLogin = () => {
     setIsLoggedIn(true);
@@ -69,17 +82,46 @@ useEffect(() => {
             <li><a className=' hover:shadow-pink-500 shadow-lg px-2 rounded-full ' href="#features">Features</a></li>
             <li><a className=' hover:shadow-pink-500 shadow-lg px-2 rounded-full ' href="#pricing">Pricing</a></li>
             <li><a className=' hover:shadow-pink-500 shadow-lg px-2 rounded-full gradient-gyn' href="#gamex">GameX</a></li>
-          </ul>
+          </ul>       
         </nav>
-        <a href="#cta" className="bg-pink-500 px-4 py-2 font-bold text-white rounded-full">M! tokens</a>
+        <a onClick={HandleWallet} className="bg-pink-500 cursor-pointer px-4 py-2 font-bold text-white rounded-full">M! Wallet</a>
       </header>
+        {/* Wallet */}
+        {showWallet && (
+        <AnimatedSection>
+          <div className="w-[25%] h-[60%] flex flex-col items-center justify-start bg-transparent border border-white-800 backdrop-blur-lg z-50 absolute top-0 right-0 mt-20 mr-4 rounded-2xl">
+          <div className='bg-gray-900 opacity-80 w-full flex flex-col  items-center justify-center h-[50%] rounded-t-2xl'>
+            <img src={profile} height={100} width={100} alt="" />
+            <h3 className='gradient-pfl'>GameX Player</h3>
+          </div>
+          <div className='bg-gray-700 opacity-80 w-full flex flex-col rounded-b-2xl items-center justify-between h-[50%]'>
+            <div className='flex items-center justify-center flex-col py-2'>
+              <FetchTokensAndRoomCards/>
+              {/* <p className='font-bold font-sans mt-1'>M! tokens : 0</p>
+              <p className='font-bold font-sans mt-1'>M! Cards : 1</p> */}
+              <div className='w-full'>
+                <button className='bg-yellow-600 px-8 mt-2 w-full py-2 font-bold mr-6 text-white rounded-full'>Exchange token to card</button>
+              </div>
+            </div>
+            <hr />
+            <div className='flex items-center bg-gray-700 w-full mb-4 h-auto justify-center'>
+              <button className='bg-pink-500 px-4 py-2 font-bold mr-6 text-white rounded-full'>Create Room</button>
+              <button className='bg-pink-500 px-4 py-2 font-bold text-white rounded-full'>Join Room</button>
+            </div>
+          </div>
+        </div>
+        </AnimatedSection>
+      )}
+        
+        
+      
         {/* </div> */}
         
       {/* Hero Section */}
       <AnimatedSection id="hero" className="flex flex-col items-center justify-center text-center h-[100vh]" style={{ backgroundImage: `url(${heroImage})`, backgroundSize: 'contain' }}>
      
         <h1 className="text-6xl font-bold mb-4 text-limegreen hy">Welcome to Mitayi</h1>
-        <p className="text-2xl mb-6">Multi-game platform with crypto token integration</p>
+        <p className="text-2xl mb-6">A Multi-Player - Gaming Platform</p>
         <div>
           <a href="#gamex" className="bg-white border border-white px-6 py-3 rounded-full border-gray-500 border-2"><span className='gradient-head'>GameX</span></a>
         </div>
@@ -168,36 +210,36 @@ useEffect(() => {
         <div className="flex items-center justify-center gap-4">
         <AnimatedDiv className="text-center p-6 bg-white bg-opacity-10 rounded-2xl">
   <h3 className="text-2xl font-semibold mb-2 text-pink-500">Free</h3>
-  <p className="text-3xl font-bold mb-4">$10/month</p>
+  <p className="text-3xl font-bold mb-4">0 ICP</p>
   <ul className="mb-4">
     <li>Seamless Authentication <span className='text-green-500'>&#10003;</span></li>
-    <li>Play and Earn your rewards <span className='text-green-500'>&#10003;</span></li>
-    <li>Sponsor and Profit <span className='text-red-500'>&#10007;</span></li>
-    <li>Token Management Made Easy <span className='text-red-500'>&#10007;</span></li>
+    <li>Play 50 Games/month <span className='text-green-500'>&#10003;</span></li>
+    <li>Earn Tokens and Exchange <span className='text-red-500'>&#10007;</span></li>
+    {/* <li>Token Management Made Easy <span className='text-red-500'>&#10007;</span></li> */}
   </ul>
   <a href="#cta" className="bg-pink-500 px-4 py-2 rounded-full mt-4 inline-block">Choose Plan</a>
 </AnimatedDiv>
 
 <AnimatedDiv className="text-center p-6 bg-white bg-opacity-10 rounded-2xl">
   <h3 className="text-2xl font-semibold mb-2 text-pink-500">Basic</h3>
-  <p className="text-3xl font-bold mb-4">$20/month</p>
+  <p className="text-3xl font-bold mb-4">1 ICP/month</p>
   <ul className="mb-4">
     <li>Seamless Authentication <span className='text-green-500'>&#10003;</span></li>
-    <li>Play and Earn your rewards <span className='text-green-500'>&#10003;</span></li>
-    <li>Sponsor and Profit <span className='text-green-500'>&#10003;</span></li>
-    <li>Token Management Made Easy <span className='text-red-500'>&#10007;</span></li>
+    <li>Play 500 Games/month  <span className='text-green-500'>&#10003;</span></li>
+    <li>Earn Tokens and Exchange <span className='text-red-500'>&#10003;</span></li>
+    {/* <li>Token Management Made Easy <span className='text-red-500'>&#10007;</span></li> */}
   </ul>
   <a href="#cta" className="bg-pink-500 px-4 py-2 rounded-full mt-4 inline-block">Choose Plan</a>
 </AnimatedDiv>
 
 <AnimatedDiv className="text-center p-6 bg-white bg-opacity-10 rounded-2xl">
   <h3 className="text-2xl font-semibold mb-2 text-pink-500">Premium</h3>
-  <p className="text-3xl font-bold mb-4">$30/month</p>
+  <p className="text-3xl font-bold mb-4">10 ICP/month</p>
   <ul className="mb-4">
     <li>Seamless Authentication <span className='text-green-500'>&#10003;</span></li>
-    <li>Play and Earn your rewards <span className='text-green-500'>&#10003;</span></li>
-    <li>Sponsor and Profit <span className='text-green-500'>&#10003;</span></li>
-    <li>Token Management Made Easy <span className='text-green-500'>&#10003;</span></li>
+    <li>Unlimited Games<span className='text-green-500'>&#10003;</span></li>
+    <li>Earn Tokens and Exchange <span className='text-red-500'>&#10003;</span></li>
+    {/* <li>Token Management Made Easy <span className='text-green-500'>&#10003;</span></li> */}
   </ul>
   <a href="#cta" className="bg-pink-500 px-4 py-2 rounded-full mt-4 inline-block">Choose Plan</a>
 </AnimatedDiv>
@@ -208,6 +250,10 @@ useEffect(() => {
       {/* Footer */}
       <footer className="py-10 bg-black bg-opacity-80 text-center">
         <p className="text-white">© 2024 Mitayi. All rights reserved.</p>
+
+        <AddTokensButton tokensToAdd={10}/>
+        <RemoveTokensButton tokensToRemove={10}/>
+        <ExchangeTokensButton/>
       </footer>
     </div>
   );
