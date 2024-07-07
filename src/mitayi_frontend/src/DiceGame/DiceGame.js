@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import styled, { keyframes, css } from 'styled-components';
-
+import confetti from 'canvas-confetti';
+import spinSound from './dice.mp3';
+import AddTokensButton from '../Backendcomponents/AddTokensButton';
 const DiceGameWrapper = styled.div`
   text-align: center;
   font-family: Arial, sans-serif;
@@ -8,12 +10,6 @@ const DiceGameWrapper = styled.div`
   width: 100%;
   height: 100vh;
   padding-top: 40px;
-`;
-
-const TimerWrapper = styled.div`
-  font-size: 20px;
-  margin: 10px;
-  color: gold;
 `;
 
 const InputWrapper = styled.div`
@@ -61,47 +57,93 @@ const Dice = ({ number, animate, spin }) => {
       setIsAnimating(true);
       setTimeout(() => {
         setIsAnimating(false);
-      }, 3000); // Set animate to false after 3 seconds
-    }
+      }, 3000); }
   }, [animate]);
 
   const diceSrc = require(`./assets/Dice${number}.png`);
   return <DiceImage src={diceSrc} alt={`Dice ${number}`} animate={isAnimating ? 1 : 0} spin={spin ? 1 : 0} />;
 };
 
-const Timer = ({ seconds, onExpire }) => {
+const Confetti = ({ onClose }) => {
   useEffect(() => {
-    if (seconds <= 0) {
-      onExpire();
-      return;
-    }
+    const end = Date.now() + 3 * 1000; // 3 seconds
+    const colors = ["#a786ff", "#fd8bbc", "#eca184", "#f8deb1"];
 
-    const interval = setInterval(() => {
-      onExpire(seconds - 1);
-    }, 1000);
+    const frame = () => {
+      if (Date.now() > end) return;
 
-    return () => clearInterval(interval);
-  }, [seconds, onExpire]);
+      confetti({
+        particleCount: 2,
+        angle: 60,
+        spread: 55,
+        startVelocity: 60,
+        origin: { x: 0, y: 0.5 },
+        colors: colors,
+      });
+      confetti({
+        particleCount: 2,
+        angle: 120,
+        spread: 55,
+        startVelocity: 60,
+        origin: { x: 1, y: 0.5 },
+        colors: colors,
+      });
+
+      requestAnimationFrame(frame);
+    };
+
+    frame();
+  }, []);
 
   return (
-    <TimerWrapper>
-      Time Left: {seconds}s
-    </TimerWrapper>
+    <div className='flex items-center justify-center w-[100vw] h-[100vh] bg-black bg-opacity-50 backdrop-blur-lg fixed top-0 left-0 z-50'>
+      <div id="popup-modal" tabIndex="-1" className="overflow-y-auto overflow-x-hidden justify-center items-center">
+        <div className="relative p-4 w-full max-w-md max-h-full">
+          <div className="relative bg-white rounded-lg shadow dark:bg-gray-700">
+            <button type="button" className="absolute top-3 end-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" onClick={onClose}>
+              <svg className="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+                <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
+              </svg>
+              <span className="sr-only">Close modal</span>
+            </button>
+            <div className="p-4 md:p-5 text-center">
+              <h1 className='text-6xl my-2'>🎊</h1>
+              <h3 className="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">Are you sure you want to add Mi tokens?</h3>
+              <AddTokensButton tokensToAdd={5}/>
+              {/* <button onClick={onClose} className="text-white bg-yellow-500 hover:bg-yellow-800 text-yellow-800 hover:text-white font-medium rounded-full text-sm inline-flex items-center px-5 py-2.5 text-center">
+                Add 10 Mi Tokens
+              </button> */}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   );
 };
 
 const DiceGame = () => {
-  const [bidAmount, setBidAmount] = useState(100);
+  const [bidAmount, setBidAmount] = useState(0);
   const [guessNumber, setGuessNumber] = useState('');
   const [diceNumbers, setDiceNumbers] = useState([]);
-  const [balance, setBalance] = useState(100);
+  const [balance, setBalance] = useState(0);
   const [gameResult, setGameResult] = useState('');
   const [isGameStarted, setIsGameStarted] = useState(false);
-  const [seconds, setSeconds] = useState(60);
+  const [attempts, setAttempts] = useState(0);
   const [isSpinning, setIsSpinning] = useState(false);
+  const [showConfetti, setShowConfetti] = useState(false);
+  const [soundEnabled, setSoundEnabled] = useState(true); 
+
+  // Audio object for playing spin sound
+  let spinAudio = new Audio(spinSound);
 
   const handleSpin = () => {
     setIsSpinning(true);
+
+    // Play spin sound if sound is enabled
+    if (soundEnabled) {
+      spinAudio.play();
+    }
+
     const newDiceNumbers = Array.from({ length: 6 }, () => Math.floor(Math.random() * 6) + 1);
     setDiceNumbers(newDiceNumbers);
     const count = newDiceNumbers.filter(num => num === parseInt(guessNumber)).length;
@@ -109,31 +151,36 @@ const DiceGame = () => {
       setBalance(balance + bidAmount);
       setTimeout(() => {
         setGameResult('You win!');
-      }, 1000); // Show result after 2 seconds (matching animation duration)
+      }, 1000); // Show result after 1 second
     } else {
       setBalance(balance - bidAmount);
       setTimeout(() => {
         setGameResult('You lose!');
-      }, 1000); // Show result after 2 seconds (matching animation duration)
+      }, 1000); // Show result after 1 second
     }
     setTimeout(() => {
       setIsSpinning(false);
-    }, 1000); // Stop spinning animation after 2 seconds
-  };
+    }, 1000); // Stop spinning animation after 1 second
 
-  const handleExpire = (newSeconds) => {
-    if (newSeconds <= 0) {
-      if (balance > 100) {
-        setGameResult('You win!');
-      } else if (balance < 100) {
-        setGameResult('You lose!');
+    setAttempts(attempts + 1);
+
+    if (attempts + 1 >= 6) {
+      if (balance > 0) {
+        setShowConfetti(true);
       } else {
-        setGameResult('It\'s a tie!');
+        setGameResult(balance >= 0 ? 'It\'s a tie!' : 'You lose!');
       }
       setIsGameStarted(false);
-      return;
     }
-    setSeconds(newSeconds);
+  };
+
+  const handleConfettiClose = () => {
+    setShowConfetti(false);
+    setGameResult('');
+  };
+
+  const toggleSound = () => {
+    setSoundEnabled(!soundEnabled);
   };
 
   if (!isGameStarted) {
@@ -148,11 +195,16 @@ const DiceGame = () => {
           </div>
           <button className=" px-6 mr-2 py-2 text-yellow-600 border border-yellow-600 font-bold bg-yellow-100 mb-4 rounded-full text-3xl" onClick={() => {
             setIsGameStarted(true);
-            setSeconds(60);
+            setAttempts(0);
             setGameResult('');
-            setBalance(100);
-          }}>Start Game</button></div>
-        {gameResult && <div className='text-2xl text-yellow-600 font-bold'>{gameResult}</div>}
+            setBalance(0);
+          }}>{balance > 0 ? "Claim Tokens" : "Start Game"}</button>
+          {gameResult && (
+            <div className='text-2xl mt-2 text-yellow-600 font-bold'>
+              {balance > 0 ? "You Won!" : "You Lose! Try Again....."}
+            </div>
+          )}
+        </div>
       </DiceGameWrapper>
     );
   }
@@ -160,35 +212,46 @@ const DiceGame = () => {
   return (
     <DiceGameWrapper>
       <h1 className='text-5xl font-bold text-yellow-600 underline decoration-2 decoration-gray-600'>Dice Fortune Frenzy</h1>
-      <Timer seconds={seconds} onExpire={handleExpire} />
-      <div className='text-xl font-bold text-yellow-400 ' >Balance: {balance} units</div>
+      <div className='text-xl mt-4 font-bold text-yellow-400'>Balance: {balance} units</div>
+      <div className='text-xl font-bold text-yellow-400'>Attempts: {attempts} / 6</div>
+      <br/>
+      <button className="px-4 mr-2 py-1 text-yellow-600 border border-yellow-600 font-bold bg-yellow-100 mb-4 rounded-full text-xl"
+          onClick={toggleSound}
+        >
+          {soundEnabled ? "Mute Sound" : "Unmute Sound"}
+        </button>
       <InputWrapper>
-
         <input
-          className=" px-4 mr-2 py-2 text-yellow-600 border border-yellow-600 font-bold bg-yellow-100 mb-4 rounded-full text-2xl placeholder:text-yellow-800"
+          className="px-4 mr-2 py-2 text-yellow-600 border border-yellow-600 font-bold bg-yellow-100 mb-4 rounded-full text-2xl placeholder:text-yellow-800"
           type="number"
           placeholder="Bid Units"
           onChange={e => setBidAmount(parseInt(e.target.value))}
-        /> <br />
-
+        /><br />
         <input
-          className=" px-4 mr-2 py-2 text-yellow-600 border border-yellow-600 font-bold bg-yellow-100 mb-4 rounded-full text-2xl placeholder:text-yellow-800"
+          className="px-4 mr-2 py-2 text-yellow-600 border border-yellow-600 font-bold bg-yellow-100 mb-4 rounded-full text-2xl placeholder:text-yellow-800"
           type="number"
           placeholder="Guess Number"
           value={guessNumber}
           onChange={e => setGuessNumber(e.target.value)}
-        />
-        <br />
-        <button className=" px-6 mr-2 py-2 text-yellow-600 border border-yellow-600 font-bold bg-yellow-100 mb-4 rounded-full text-3xl"
+        /><br />
+        <button className="px-6 mr-2 py-2 text-yellow-600 border border-yellow-600 font-bold bg-yellow-100 mb-4 rounded-full text-3xl"
           onClick={handleSpin}
           disabled={isSpinning}
         >Spin Now</button>
       </InputWrapper>
-      <div className='flex items-center justify-center ' >
+      <div className='flex items-center justify-center'>
         {diceNumbers.map((num, index) => (
           <Dice key={index} number={num} spin={isSpinning} animate={isSpinning} />
         ))}
       </div>
+      {showConfetti && (
+        <div className='flex items-center justify-center'>
+          <button onClick={handleConfettiClose} className="px-6 mr-2 py-2 text-yellow-600 border border-yellow-600 font-bold bg-yellow-100 mb-4 rounded-full text-3xl">
+            Close Confetti
+          </button>
+          <Confetti onClose={handleConfettiClose} />
+        </div>
+      )}
     </DiceGameWrapper>
   );
 };

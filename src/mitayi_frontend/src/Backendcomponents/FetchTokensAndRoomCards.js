@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { AuthClient } from '@dfinity/auth-client';
 import { HttpAgent, Actor } from '@dfinity/agent';
-
+import card from '../Landmain/Assets/card.png';
+import mitoken from '../Landmain/Assets/mitoken.png';
 // Define the Motoko actor interface inline
 const actorInterface = ({ IDL }) => {
   return IDL.Service({
-    getUserTokens: IDL.Func([], [{ mitayi_tokens: IDL.Nat, noofroomcards: IDL.Nat }], ['caller']),
+    getUserTokens: IDL.Func([], [IDL.Record({ mitayi_tokens: IDL.Nat, noofroomcards: IDL.Nat })], ['query']),
   });
 };
 
@@ -29,12 +30,13 @@ const FetchTokensAndRoomCards = () => {
           const agent = new HttpAgent({ identity });
           const actor = Actor.createActor(actorInterface, {
             agent,
-            canisterId: 'olmji-7iaaa-aaaab-qab7a-cai', // Replace with your actual backend canister ID
+            canisterId: 'ue7oi-fyaaa-aaaab-qadia-cai', // Replace with your actual backend canister ID
           });
 
           const userTokens = await actor.getUserTokens();
-          setTokens(userTokens.mitayi_tokens.toNumber()); // Convert Nat to number if necessary
-          setRoomCards(userTokens.noofroomcards.toNumber()); // Convert Nat to number if necessary
+          // console.log(userTokens);
+          setTokens(Number(userTokens.mitayi_tokens)); // Convert BigInt to number
+          setRoomCards(Number(userTokens.noofroomcards)); // Convert BigInt to number
         } else {
           setError('User is not authenticated. Please log in first.');
         }
@@ -54,10 +56,23 @@ const FetchTokensAndRoomCards = () => {
       {isLoading && <p>Loading tokens and room cards...</p>}
       {error && <p>{error}</p>}
       {!isLoading && !error && (
-        <div>
-          <p>Tokens: {tokens}</p>
-          <p>Room Cards: {roomCards}</p>
-        </div>
+        <>
+         <div className='flex justify-center items-center'>
+         <img src={mitoken} height={17} width={17} className='pt-1'
+              />
+         <p className='font-bold font-sans mt-1'>M! tokens : {tokens}</p>
+         
+           </div>
+         <div className='flex justify-center items-center'>
+         <img src={card} height={18} width={18} className='pt-1 brightness-105'
+              />
+
+         <p className='font-bold font-sans mt-1'>M! Cards : {roomCards}</p>
+        
+           </div>
+          
+         
+        </>
       )}
     </div>
   );

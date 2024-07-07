@@ -89,22 +89,20 @@ useEffect(() => {
         {/* Wallet */}
         {showWallet && (
         <AnimatedSection>
-          <div className="w-[25%] h-[60%] flex flex-col items-center justify-start bg-transparent border border-white-800 backdrop-blur-lg z-50 absolute top-0 right-0 mt-20 mr-4 rounded-2xl">
+          <div className="w-[25%] h-[62%] overflow-hidden flex flex-col items-center justify-start bg-transparent border border-white-800 backdrop-blur-lg z-50 absolute top-0 right-0 mt-20 mr-4 rounded-2xl">
           <div className='bg-gray-900 opacity-80 w-full flex flex-col  items-center justify-center h-[50%] rounded-t-2xl'>
             <img src={profile} height={100} width={100} alt="" />
             <h3 className='gradient-pfl'>GameX Player</h3>
           </div>
-          <div className='bg-gray-700 opacity-80 w-full flex flex-col rounded-b-2xl items-center justify-between h-[50%]'>
+          <div className='bg-gradient-to-r from-blue-500 to-cyan-500 opacity-80 w-full flex flex-col rounded-b-2xl items-center justify-between h-[50%]'>
             <div className='flex items-center justify-center flex-col py-2'>
-              <FetchTokensAndRoomCards/>
-              {/* <p className='font-bold font-sans mt-1'>M! tokens : 0</p>
-              <p className='font-bold font-sans mt-1'>M! Cards : 1</p> */}
+             <FetchTokensAndRoomCards/> 
               <div className='w-full'>
-                <button className='bg-yellow-600 px-8 mt-2 w-full py-2 font-bold mr-6 text-white rounded-full'>Exchange token to card</button>
+                <ExchangeTokensButton/>
               </div>
             </div>
             <hr />
-            <div className='flex items-center bg-gray-700 w-full mb-4 h-auto justify-center'>
+            <div className='flex items-center w-full mb-4 h-auto justify-center'>
               <button className='bg-pink-500 px-4 py-2 font-bold mr-6 text-white rounded-full'>Create Room</button>
               <button className='bg-pink-500 px-4 py-2 font-bold text-white rounded-full'>Join Room</button>
             </div>
@@ -253,7 +251,7 @@ useEffect(() => {
 
         <AddTokensButton tokensToAdd={10}/>
         <RemoveTokensButton tokensToRemove={10}/>
-        <ExchangeTokensButton/>
+        {/* <ExchangeTokensButton/> */}
       </footer>
     </div>
   );

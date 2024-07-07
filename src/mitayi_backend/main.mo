@@ -19,7 +19,7 @@ actor {
     };
 
     // Query to fetch user tokens based on the caller's principal
-    public query ({ caller }) func getUserTokens() : async UserTokens {
+    public query ({ caller }) func getUserTokens() : async { mitayi_tokens: Nat; noofroomcards: Nat } {
         switch (userTokens.get(caller)) {
             case (null) {
                 // User not found, return default values (0 tokens, 0 room cards)
@@ -31,7 +31,7 @@ actor {
             };
             case (?tokens) {
                 // User found, return their tokens and room cards
-                return tokens;
+                return { mitayi_tokens= tokens.mitayi_tokens; noofroomcards = tokens.noofroomcards };
             };
         };
     };

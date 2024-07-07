@@ -26,11 +26,11 @@ const ExchangeTokensButton = () => {
         const agent = new HttpAgent({ identity });
         const actor = Actor.createActor(actorInterface, {
           agent,
-          canisterId: 'olmji-7iaaa-aaaab-qab7a-cai', // Replace with your actual backend canister ID
+          canisterId: 'ue7oi-fyaaa-aaaab-qadia-cai', // Replace with your actual backend canister ID
         });
 
         await actor.exchangeTokensForRoomCards();
-        setMessage(`Successfully exchanged 50 Mitayi tokens for 1 room card!`);
+        setMessage(`Successfully Exchanged`);
       } else {
         setMessage('User is not authenticated. Please log in first.');
       }
@@ -43,16 +43,17 @@ const ExchangeTokensButton = () => {
   };
 
   return (
-    <div>
+    <>
       <button
-        className="w-full py-2 px-4 bg-white font-bold text-black rounded-full text-xl border-2 border-orange-600 hover:bg-gray-300"
+        
+        className='bg-yellow-600 px-4 mt-2 w-full py-2 font-bold mr-6 text-white rounded-full text-lg'
         onClick={exchangeTokens}
         disabled={isLoading}
       >
-        {isLoading ? 'Exchanging tokens...' : 'Exchange 50 Tokens for 1 Room Card'}
+        {isLoading ? 'Exchanging tokens...' : 'Exchange Tokens-Room Card'}
       </button>
       {message && <p>{message}</p>}
-    </div>
+    </>
   );
 };
 
