@@ -17,6 +17,7 @@ import RemoveTokensButton from '../Backendcomponents/RemoveTokensButton';
 import ExchangeTokensButton from '../Backendcomponents/ExchangeTokensButton';
 import FetchTokensAndRoomCards from '../Backendcomponents/FetchTokensAndRoomCards';
 import profile from './Assets/profile.png'
+import PlugWalletAuth from '../plugwallet/PlugWalletAuth';
 // Keyframes for animations
 const fadeIn = keyframes`
   from {
@@ -61,6 +62,7 @@ const LandPage = () => {
   const handleLogin = () => {
     setIsLoggedIn(true);
   };
+  const canisterId = '53qip-2yaaa-aaaab-qac2a-cai';
 
 useEffect(() => {
   const savedPrincipal = localStorage.getItem('principal');
@@ -84,7 +86,10 @@ useEffect(() => {
             <li><a className=' hover:shadow-pink-500 shadow-lg px-2 rounded-full gradient-gyn' href="#gamex">GameX</a></li>
           </ul>       
         </nav>
-        <a onClick={HandleWallet} className="bg-pink-500 cursor-pointer px-4 py-2 font-bold text-white rounded-full">M! Wallet</a>
+        {isLoggedIn && 
+         <a onClick={HandleWallet} className="bg-pink-500 cursor-pointer px-4 py-2 font-bold text-white rounded-full">M! Wallet</a>
+        }
+       
       </header>
         {/* Wallet */}
         {showWallet && (
@@ -251,6 +256,7 @@ useEffect(() => {
 
         <AddTokensButton tokensToAdd={10}/>
         <RemoveTokensButton tokensToRemove={10}/>
+        <PlugWalletAuth  />
         {/* <ExchangeTokensButton/> */}
       </footer>
     </div>
