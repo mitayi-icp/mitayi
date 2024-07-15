@@ -35,7 +35,7 @@ Now you can Access to the application in your Browser .
 
 **AUTHORIZATION :**
 INTERNET IDENTITY IS USED FOR THE AUTHORIZATION OF THE USERS .
-<img width="507" alt="Screenshot 2024-07-15 200555" src="https://github.com/user-attachments/assets/e7080339-2695-4a19-9308-6ea6221bbc26">
+<img style="border-radius:12px;" width="507" alt="Screenshot 2024-07-15 200555" src="https://github.com/user-attachments/assets/e7080339-2695-4a19-9308-6ea6221bbc26">
 
 
 
