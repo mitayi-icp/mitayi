@@ -35,9 +35,22 @@ Now you can Access to the application in your Browser .
 
 **AUTHORIZATION :**
 INTERNET IDENTITY IS USED FOR THE AUTHORIZATION OF THE USERS .
-<img style="border-radius:12px;" width="507" alt="Screenshot 2024-07-15 200555" src="https://github.com/user-attachments/assets/e7080339-2695-4a19-9308-6ea6221bbc26">
 
 
+<img width="507" alt="Screenshot 2024-07-15 200555" src="https://github.com/user-attachments/assets/e7080339-2695-4a19-9308-6ea6221bbc26">
+
+
+MITAYI LANDING PAGE :
+
+<img width="946" alt="Screenshot 2024-07-15 201045" src="https://github.com/user-attachments/assets/521bdf76-8d3c-483c-a3dc-610ca4fa301c">
+
+
+MITAYI GAMES :
+
+DICE GAME : Players can bid and spin the dice for 6 attempts , if player has a positive score can claim 5 mitayi Tokens 
+
+
+![Untitled video - Made with Clipchamp](https://github.com/user-attachments/assets/cd291125-36e8-46b0-9cd2-5a203a00b75c)
 
 
 
