@@ -17,7 +17,7 @@ Make sure you have a good knowledge of motoko icp and React js , This applicatio
 Run the above commands to install the dependencies 
 
 **STEP 3** : Deploy the Backend Cansister in the playground or in network.
-> dfx deploy mitay_backend
+> dfx deploy mitayi_backend
 
 **STEP 4** : Now Paste the backend cansister id in frontend src wherever it is used .
 
@@ -30,6 +30,13 @@ Run the above commands to install the dependencies
 
 
 Now you can Access to the application in your Browser .
+
+
+
+**AUTHORIZATION :**
+INTERNET IDENTITY IS USED FOR THE AUTHORIZATION OF THE USERS .
+<img width="507" alt="Screenshot 2024-07-15 200555" src="https://github.com/user-attachments/assets/e7080339-2695-4a19-9308-6ea6221bbc26">
+
 
 
 
