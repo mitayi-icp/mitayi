@@ -1,5 +1,7 @@
 # `Mitayi DAO`
-Welcome to MITAYI, a pioneering decentralized multiplayer gaming platform designed to redefine online gaming experiences. With a diverse array of engaging games, MITAYI integrates cutting-edge DAO (Decentralized Autonomous Organization) features, empowering players with governance over platform decisions. Built on the ICP (Internet Computer Protocol) ecosystem, MITAYI ensures seamless interaction and secure value exchange, setting new standards for gaming innovation.
+#`Mitayi DAO`
+<span style="font-size: 2em; color: lightblue;">Welcome to MITAYI</span>
+, a pioneering decentralized multiplayer gaming platform designed to redefine online gaming experiences. With a diverse array of engaging games, MITAYI integrates cutting-edge DAO (Decentralized Autonomous Organization) features, empowering players with governance over platform decisions. Built on the ICP (Internet Computer Protocol) ecosystem, MITAYI ensures seamless interaction and secure value exchange, setting new standards for gaming innovation.
 
 ! Make sure you should have latest NODE and nvm for version management 
 **Instructions to use this repository**.
