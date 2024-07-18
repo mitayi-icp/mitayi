@@ -4,11 +4,15 @@ import { HttpAgent, Actor } from '@dfinity/agent';
 import card from '../Landmain/Assets/card.png';
 import mitoken from '../Landmain/Assets/mitoken.png';
 // Define the Motoko actor interface inline
+
+// require('dotenv').config();
 const actorInterface = ({ IDL }) => {
   return IDL.Service({
     getUserTokens: IDL.Func([], [IDL.Record({ mitayi_tokens: IDL.Nat, noofroomcards: IDL.Nat })], ['query']),
   });
 };
+
+
 
 const FetchTokensAndRoomCards = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -30,7 +34,7 @@ const FetchTokensAndRoomCards = () => {
           const agent = new HttpAgent({ identity });
           const actor = Actor.createActor(actorInterface, {
             agent,
-            canisterId: '53qip-2yaaa-aaaab-qac2a-cai', // Replace with your actual backend canister ID
+            canisterId: "pgce5-saaaa-aaaal-ajohq-cai", // Replace with your actual backend canister ID
           });
 
           const userTokens = await actor.getUserTokens();

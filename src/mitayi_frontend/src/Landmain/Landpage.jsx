@@ -17,7 +17,7 @@ import RemoveTokensButton from '../Backendcomponents/RemoveTokensButton';
 import ExchangeTokensButton from '../Backendcomponents/ExchangeTokensButton';
 import FetchTokensAndRoomCards from '../Backendcomponents/FetchTokensAndRoomCards';
 import profile from './Assets/profile.png'
-import PlugWalletAuth from '../plugwallet/PlugWalletAuth';
+// import PlugWalletAuth from '../plugwallet/PlugWalletAuth';
 // Keyframes for animations
 const fadeIn = keyframes`
   from {
@@ -170,7 +170,7 @@ useEffect(() => {
 
           <AnimatedDiv className="text-center w-full mb-2 p-6 bg-transparent mb-32 bg-opacity-10 flex items-center justify-around rounded-lg">
           <div className='text-left'>
-          <h3 className="text-2xl font-semibold mb-2 gradient-nav">Play and Earn your rewards</h3>
+          <h3 className="text-2xl font-semibold mb-2 gradient-nav">Play and Earn Tokens</h3>
           <p className='w-[65vw] gradient-para text-left text-md'><span className='text-pink-500 font-bold text-xl'>"</span>Dive into exciting games and earn Mitayi tokens as you play. These tokens can be redeemed for money and a variety of rewards, making your gaming experience both fun and rewarding<span className='text-pink-500 font-bold text-xl'>"</span></p>
             </div>
             <div className='right'>
@@ -185,8 +185,9 @@ useEffect(() => {
             <img src={feature3Image} alt="Feature 1" className="h-36 w-36 dp" />
             </div>
             <div className='text-right'>
-            <h3 className="text-2xl font-semibold mb-2 text-pink-500 gradient-nav">Sponsor and Profit</h3>
-            <p className='w-[70vw] gradient-para text-md'><span className='text-pink-500 font-bold text-xl'>"</span>Invest in the games you believe in and earn money based on the outcomes. Whether you win or lose, there are opportunities to profit, making every investment an exciting venture<span className='text-pink-500 font-bold text-xl'>"</span></p>
+            <h3 className="text-2xl font-semibold mb-2 text-pink-500 gradient-nav">Exchange Room cards
+            </h3>
+            <p className='w-[70vw] gradient-para text-md'><span className='text-pink-500 font-bold text-xl'>"</span>Exchange Tokens in the games you believe in and earn roomcards based on the outcomes. Whether you win or lose, there are opportunities to claim tokens, making every investment an exciting venture<span className='text-pink-500 font-bold text-xl'>"</span></p>
             </div>
           </AnimatedDiv>
 
@@ -254,9 +255,9 @@ useEffect(() => {
       <footer className="py-10 bg-black bg-opacity-80 text-center">
         <p className="text-white">© 2024 Mitayi. All rights reserved.</p>
 
-        <AddTokensButton tokensToAdd={10}/>
-        <RemoveTokensButton tokensToRemove={10}/>
-        <PlugWalletAuth  />
+        {/* <AddTokensButton tokensToAdd={10}/>
+        <RemoveTokensButton tokensToRemove={10}/> */}
+        {/* <PlugWalletAuth  /> */}
         {/* <ExchangeTokensButton/> */}
       </footer>
     </div>

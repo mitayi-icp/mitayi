@@ -36,7 +36,7 @@ const Login = ({ onLogin }) => {
         const agent = new HttpAgent({ identity });
         const actor = Actor.createActor(actorInterface, {
           agent,
-          canisterId: '53qip-2yaaa-aaaab-qac2a-cai', // Replace with your actual backend canister ID
+          canisterId: 'pgce5-saaaa-aaaal-ajohq-cai', // Replace with your actual backend canister ID
         });
 
         try {
@@ -67,7 +67,7 @@ const Login = ({ onLogin }) => {
           const agent = new HttpAgent({ identity });
           const actor = Actor.createActor(actorInterface, {
             agent,
-            canisterId: '53qip-2yaaa-aaaab-qac2a-cai', // Replace with your actual backend canister ID
+            canisterId: 'pgce5-saaaa-aaaal-ajohq-cai', // Replace with your actual backend canister ID
           });
 
           try {
